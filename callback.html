@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Callback and Promise Demo</title>
+</head>
+<body>
+  <h1>Callback, Promise, and Async/Await Demo</h1>
+  <p>Open the console (F12 or right-click > Inspect > Console) to view the logs.</p>
+
+  <script>
+    // 1. Function that accepts a callback
+    function greetUser(name, callback) {
+      console.log("Processing...");
+      callback(name);
+    }
+
+    greetUser("Rithi", (name) => {
+      console.log(`Hello, ${name}!`);
+    });
+
+    // 2. Create a promise that resolves or rejects
+    function checkNumber(num) {
+      return new Promise((resolve, reject) => {
+        if (num > 0) {
+          resolve("The number is positive!");
+        } else {
+          reject("The number is not positive.");
+        }
+      });
+    }
+
+    // 3. Handle promise using then and catch
+    checkNumber(10)
+      .then((message) => {
+        console.log("Using .then() : ", message);
+      })
+      .catch((error) => {
+        console.log("Using .catch() : ", error);
+      });
+
+    // 4. Rewrite promise code using async/await
+    async function handleCheck() {
+      try {
+        const message = await checkNumber(-5);
+        console.log("Using async/await : ", message);
+      } catch (error) {
+        console.log("Using async/await (error) : ", error);
+      }
+    }
+
+    handleCheck();
+  </script>
+</body>
+</html>
